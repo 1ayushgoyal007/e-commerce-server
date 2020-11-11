@@ -4,17 +4,21 @@ import Order from '../models/orderModel.js';
 //create new order
 
 const addOrderItems = asyncHandler(async(req,res)=>{
+    console.log('till here i was here');
     const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body
 
     if(orderItems && orderItems.length===0){
+        console.log('check 2');
         res.status(400).json({ message:"No Order Items" });
     }else{
-
+        console.log('check 3', req.user);
         Order.create({user: req.user._id , orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice}).then((order)=>{
             console.log('now the order has been created', order);
             res.status(201).json(order);
 
         }).catch((err)=>{
+        console.log('check 4');
+
             console.log('order did not make it', err);
             res.status(401).json({ message: err.message })
         })

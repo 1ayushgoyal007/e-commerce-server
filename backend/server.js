@@ -1,5 +1,6 @@
 import path from 'path';
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
@@ -20,6 +21,14 @@ if(process.env.NODE_ENV=='development'){
 app.use(express.json());
 dotenv.config();
 connectDB();
+
+app.use(cors({
+    'allowedHeaders': ['sessionId', 'Content-Type','Authorization'],
+    'exposedHeaders': ['sessionId'],
+    'origin': '*',
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'preflightContinue': false
+  }));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
