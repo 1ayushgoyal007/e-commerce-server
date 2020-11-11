@@ -21,6 +21,12 @@ app.use(express.json());
 dotenv.config();
 connectDB();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static( path.join(__dirname, '/uploads') ))
