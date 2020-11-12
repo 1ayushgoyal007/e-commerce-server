@@ -26,7 +26,7 @@ router.get('/:id',(req,res)=> {
             res.status(401).json({message:"User not found"});
         }else{
             console.log('user is definately', user);
-            const URL = `/api/verify/verification/${req.params.id}`
+            const URL = `https://e-commerce1-server.herokuapp.com/api/verify/verification/${req.params.id}`
             const data = {
                 from: 'goyalrockslogin1@gmail.com',
                 to: user.email,
