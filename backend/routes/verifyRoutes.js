@@ -42,7 +42,7 @@ router.get('/:id',(req,res)=> {
 
                 }else{
                     console.log('message send ',body);
-                    res.status(200).json({user});
+                    res.status(200).json({body});
                     
                 }
             });
