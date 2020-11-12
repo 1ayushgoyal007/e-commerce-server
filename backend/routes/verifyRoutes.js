@@ -35,11 +35,13 @@ router.get('/:id',(req,res)=> {
             transporter.sendMail(mailOptions, function(err, data){
                 if(err){
                     console.log('error in email',err);
+                    res.status(200).json({ error:err.message })
                 }else{
                     console.log('email send', data);
+                    res.status(200).json({user});
+
                 }
             } )
-            res.status(200).json({user});
 
         }
     }).catch((err)=>{
